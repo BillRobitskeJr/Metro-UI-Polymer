@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="metro-progress">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 0.625rem 0;
+        background: var(--metro-progress-bar-background, #eeeeee);
+        overflow: hidden;
+      }
+      :host:before, :host:after {
+        display: table;
+        content: "";
+      }
+      :host:after {
+        clear: both;
+      }
+
+      #bar {
+        position: relative;
+        display: block;
+        float: left;
+        width: var(--metro-progress-bar-width, 0);
+        background: var(--metro-progress-bar-color, #1ba1e2);
+        z-index: 1;
+        text-align: center;
+        height: var(--metro-progress-bar-height, 0.625rem);
+        line-height: 0.625rem;
+        color: #ffffff;
+      }
+    </style>
+    <div id="bar"></div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'metro-progress',
+
+      properties: {
+        value: {
+          type: Number,
+          value: 0,
+          observer: "_valueChanged"
+        },
+      },
+
+      _valueChanged: function(newValue, oldValue) {
+        if (newValue < 0) {
+          this.customStyle['--metro-progress-bar-width'] = '0';
+        } else if (newValue > 100) {
+          this.customStyle['--metro-progress-bar-width'] = '100%';
+        } else {
+          this.customStyle['--metro-progress-bar-width'] = newValue + '%';
+        }
+        this.updateStyles();
+      }
+
+    });
+  </script>
+</dom-module>
