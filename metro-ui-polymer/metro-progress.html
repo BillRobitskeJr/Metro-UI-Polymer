@@ -1,6 +1,21 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <dom-module id="metro-progress">
+  <!--
+  `<metro-progress>` inserts a simple Metro UI styled progress bar into a page.
+
+  ### Styling
+
+  `<metro-progress>` provides the following custom properties for styling:
+
+  Custom property | Description | Default
+  ----------------|-------------|--------
+  `--metro-progress-bar-background` | Background for the unfilled portion of the progress bar | `#eeeeee`
+  `--metro-progress-bar-color` | Background for the filled portion of the progress bar | `#1ba1e1`
+  `--metro-progress-bar-height` | Height of the progress bar | `0.625rem`
+
+  @demo demo/index.html Demos of the metro-progress element
+  -->
   <template strip-whitespace>
     <style>
       :host {
@@ -37,11 +52,15 @@
   </template>
 
   <script>
-    Polymer({
+    window.MetroUI = window.MetroUI || {};
 
+    window.MetroUI.MetroProgressElement = Polymer({
       is: 'metro-progress',
 
       properties: {
+        /**
+         * The percentage of the progress bar to be filled
+         */
         value: {
           type: Number,
           value: 0,
@@ -49,6 +68,14 @@
         },
       },
 
+      /**
+       * Updates the displayed width of the filled portion of the progress bar
+       * when the `value` changes
+       *
+       * @param newValue This progress bar's new percentage filled value
+       * @param oldValue This progress bar's previous percentage filled value
+       * @private
+       */
       _valueChanged: function(newValue, oldValue) {
         if (newValue < 0) {
           this.customStyle['--metro-progress-bar-width'] = '0';
