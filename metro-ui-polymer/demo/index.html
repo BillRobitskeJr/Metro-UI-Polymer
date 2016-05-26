@@ -12,6 +12,15 @@
     <link rel="import" href="../metro-progress.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
+      .custom-background {
+        --metro-progress-bar-background: rgb(100, 100, 100);
+      }
+      .custom-color {
+        --metro-progress-bar-color: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+      }
+      .custom-size {
+        --metro-progress-bar-height: 1.618rem;
+      }
     </style>
   </head>
   <body>
@@ -26,6 +35,21 @@
       <demo-snippet>
         <template>
           <metro-progress value="61.8"></metro-progress>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <metro-progress value="38.2" class="custom-background"></metro-progress>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <metro-progress value="38.2" class="custom-color"></metro-progress>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <metro-progress value="38.2" class="custom-size"></metro-progress>
         </template>
       </demo-snippet>
     </div>
