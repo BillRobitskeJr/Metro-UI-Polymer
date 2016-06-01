@@ -1,7 +1,7 @@
 {
-  "name": "metro-progress",
-  "description": "Metro UI style progress bar",
-  "main": "metro-progress.html",
+  "name": "metro-ui",
+  "description": "Polymer implementation of Metro UI CSS",
+  "main": "metro-ui.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },

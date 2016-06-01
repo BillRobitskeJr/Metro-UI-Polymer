@@ -1,6 +1,6 @@
-# \<metro-progress\>
+# \<metro-ui\>
 
-Metro UI style progress bar
+Polymer implementation of Metro UI CSS
 
 ## Install the Polymer-CLI
 

@@ -2,28 +2,28 @@
 
 <html>
   <head>
-    <title>metro-progress test</title>
+    <title>metro-ui test</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../metro-progress.html">
+    <link rel="import" href="../metro-ui.html">
   </head>
   <body>
 
     <test-fixture id="basic">
       <template>
-        <metro-progress></metro-progress>
+        <metro-ui></metro-ui>
       </template>
     </test-fixture>
 
     <script>
-      suite('metro-progress', function() {
+      suite('metro-ui', function() {
 
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'metro-progress');
+          assert.equal(element.is, 'metro-ui');
         });
 
       });
