@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>metro-ui demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../metro-progress.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+      .bg-stripes {
+        --metro-progress-bar-background: #f0a30a linear-gradient(-45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent) !important;
+        --metro-progress-bar-background-size: 40px 40px !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic metro-progress Demo</h3>
+      <demo-snippet>
+        <template>
+          <metro-progress></metro-progress>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <metro-progress value="31.8"></metro-progress>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <metro-progress value="31.8" animate class="bg-stripes"></metro-progress>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>
