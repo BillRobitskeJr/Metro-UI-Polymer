@@ -1,5 +1,10 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<!--
+`<metro-progress>` includes a progress bar in the page.
+
+@demo metro-progress.html Basic metro-progress Demo
+-->
 <dom-module id="metro-progress">
   <template>
     <style>
@@ -36,6 +41,9 @@
       #bar.animate {
         animation: ani-bg-stripes 2s linear infinite;
       }
+      #bar.gradient {
+        background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+      }
 
       @keyframes ani-bg-stripes {
         from {  background-position: 40px 0;  }
@@ -51,18 +59,40 @@
       is: 'metro-progress',
 
       properties: {
+        /**
+         * Percentage of the progress bar to be filled
+         */
         value: {
           type: Number,
           value: 0,
           observer: '_valueChanged'
         },
+
+        /**
+         * Filled portion of the progress bar is animated
+         */
         animate: {
           type: Boolean,
           value: false,
           observer: '_animateChanged'
+        },
+
+        /**
+         * Filled portion of the progress bar is filled with a standard gradient pattern
+         */
+        gradient: {
+          type: Boolean,
+          value: false,
+          observer: '_gradientChanged'
         }
       },
 
+      /**
+       * Updates the filled portion of the progress bar when its `value` has changed
+       * @param {Number} newValue
+       * @param {Number} oldValue
+       * @private
+       */
       _valueChanged: function(newValue, oldValue) {
         if (newValue < 0) {
           this.customStyle['--metro-progress-bar-width'] = '0%';
@@ -73,11 +103,30 @@
         }
         this.updateStyles();
       },
+      /**
+       * Updates the filled portion of the progress bar when its `animate` attribute has changed
+       * @param {Boolean} newValue
+       * @param {Boolean} oldValue
+       * @private
+       */
       _animateChanged: function(newValue, oldValue) {
         if (newValue) {
           Polymer.dom(this.$.bar).classList.add('animate');
         } else {
           Polymer.dom(this.$.bar).classList.remove('animate');
+        }
+      },
+      /**
+       * Updates the filled portion of the progress bar with its `graient` attribute has changed
+       * @param {Boolean} newValue
+       * @param {Boolean} oldValue
+       * @private
+       */
+      _gradientChanged: function(newValue, oldValue) {
+        if (newValue) {
+          Polymer.dom(this.$.bar).classList.add('gradient');
+        } else {
+          Polymer.dom(this.$.bar).classList.remove('gradient');
         }
       }
 
