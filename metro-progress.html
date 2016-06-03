@@ -3,6 +3,16 @@
 <!--
 `<metro-progress>` includes a progress bar in the page.
 
+### Styling
+
+`<metro-progress>` provides the following custom properties for styling:
+
+Custom property | Description | Default
+----------------|-------------|--------
+`--metro-progress-background` | Background for the unfilled portion of a progress bar | `#eeeeee`
+`--metro-progress-bar-background` | Background for the filled portion of a progress bar | `#1ba1e2`
+`--metro-progress-bar-background-size` | Size of the background for the filled portion of a progress bar | `auto`
+
 @demo metro-progress.html Basic metro-progress Demo
 -->
 <dom-module id="metro-progress">
@@ -29,12 +39,11 @@
         position: relative;
         display: block;
         float: left;
-        width: var(--metro-progress-bar-width, 0);
         background: var(--metro-progress-bar-background, #1ba1e2);
         background-size: var(--metro-progress-bar-background-size, auto);
         z-index: 1;
         text-align: center;
-        height: var(--metro-progress-bar-height, 0.625rem);
+        height: 0.625rem;
         line-height: 0.625rem;
         color: #ffffff;
       }
@@ -44,13 +53,19 @@
       #bar.gradient {
         background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
       }
+      #bar.small {
+        height: 0.3125rem;
+      }
+      #bar.large {
+        height: 1rem;
+      }
 
       @keyframes ani-bg-stripes {
         from {  background-position: 40px 0;  }
         to {  background-position: 0 0;  }
       }
     </style>
-    <div id="bar"></div>
+    <div id="bar" class$="{{_generateBarClass(gradient, animate, size)}}" style$="{{_generateBarStyle(value)}}"></div>
   </template>
 
   <script>
@@ -60,74 +75,67 @@
 
       properties: {
         /**
-         * Percentage of the progress bar to be filled
+         * Percentage of this progress bar to be filled
          */
         value: {
           type: Number,
-          value: 0,
-          observer: '_valueChanged'
+          value: 0
+          //observer: '_valueChanged'
         },
 
         /**
-         * Filled portion of the progress bar is animated
+         * Filled portion of this progress bar is animated
          */
         animate: {
           type: Boolean,
-          value: false,
-          observer: '_animateChanged'
+          value: false
         },
 
         /**
-         * Filled portion of the progress bar is filled with a standard gradient pattern
+         * Filled portion of this progress bar is filled with a standard gradient pattern
          */
         gradient: {
           type: Boolean,
-          value: false,
-          observer: '_gradientChanged'
+          value: false
+        },
+
+        /**
+         * Height of this progress bar
+         *
+         * Acceptable values are `normal`, `small`, and `large`
+         */
+        size: {
+          type: String,
+          value: 'normal'
         }
       },
 
       /**
-       * Updates the filled portion of the progress bar when its `value` has changed
-       * @param {Number} newValue
-       * @param {Number} oldValue
+       * Returns the appropriate class list for the filled portion of this progress bar
+       * @param {Boolean} gradient This progress bar's `gradient` property
+       * @param {Boolean} animate This progress bar's `animate` property
+       * @param {String} size This progress bar's `size` property
+       * @returns {string}
        * @private
        */
-      _valueChanged: function(newValue, oldValue) {
-        if (newValue < 0) {
-          this.customStyle['--metro-progress-bar-width'] = '0%';
-        } else if (newValue > 100) {
-          this.customStyle['--metro-progress-bar-width'] = '100%';
-        } else {
-          this.customStyle['--metro-progress-bar-width'] = newValue + '%';
-        }
-        this.updateStyles();
+      _generateBarClass: function(gradient, animate, size) {
+        var classList = [];
+        if (gradient) classList.push('gradient');
+        if (animate) classList.push('animate');
+        if (size.match(/small/i)) classList.push('small');
+        if (size.match(/large/i)) classList.push('large');
+        return classList.join(' ');
       },
+
       /**
-       * Updates the filled portion of the progress bar when its `animate` attribute has changed
-       * @param {Boolean} newValue
-       * @param {Boolean} oldValue
+       * Returns the appropriate style attribute value for the filled portion of this progress bar
+       * @param {Number} value This progress bar's `value` property
+       * @returns {string}
        * @private
        */
-      _animateChanged: function(newValue, oldValue) {
-        if (newValue) {
-          Polymer.dom(this.$.bar).classList.add('animate');
-        } else {
-          Polymer.dom(this.$.bar).classList.remove('animate');
-        }
-      },
-      /**
-       * Updates the filled portion of the progress bar with its `graient` attribute has changed
-       * @param {Boolean} newValue
-       * @param {Boolean} oldValue
-       * @private
-       */
-      _gradientChanged: function(newValue, oldValue) {
-        if (newValue) {
-          Polymer.dom(this.$.bar).classList.add('gradient');
-        } else {
-          Polymer.dom(this.$.bar).classList.remove('gradient');
-        }
+      _generateBarStyle: function(value) {
+        var width = value < 0 ? 0 : (value > 100 ? 100 : value);
+        return 'width: ' + width + '%';
       }
 
     });
