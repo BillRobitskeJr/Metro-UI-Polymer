@@ -3,6 +3,18 @@
 <!--
 `<metro-button>` includes a basic Metro UI style button in the page.
 
+### Styling
+
+`<metro-button>` utilizies the following custom properties for styling:
+
+Custom property | Description | Default
+----------------|-------------|--------
+`--metro-default-background-color` | Default background color for Metro UI elements | `#ffffff`
+`--metro-border-color-button` | Default border color for Metro UI buttons | `#d9d9d9`
+`--metro-text-color` | Default text color for Metro UI elements | `#262626`
+`--metro-input-hover-color-darker` | Default border color for hovered Metro UI "input" elements, darkened by 20% | `#787878`
+
+@demo metro-button.html Basic metro-button demo
 -->
 <dom-module id="metro-button">
   <template>
@@ -12,9 +24,9 @@
         height: 2.125rem;
         text-align: center;
         vertical-align: middle;
-        background: var(--metro-button-background, #ffffff);
-        border: 1px var(--metro-button-border-color, #d9d9d9) solid;
-        color: var(--metro-button-color, #262626);
+        background: var(--metro-default-background-color, #ffffff);
+        border: 1px var(--metro-border-color-button, #d9d9d9) solid;
+        color: var(--metro-text-color, #262626);
         cursor: pointer;
         display: inline-block;
         outline: none;
@@ -24,11 +36,11 @@
         position: relative;
       }
       :host:hover {
-        border-color: var(--metro-button-border-hover, #787878);
+        border-color: var(--metro-input-hover-color-darker, #787878);
       }
       :host:active {
-        background: var(--metro-button-background-active, #eeeeee);
-        color: var(--metro-button-color, #262626);
+        background: #eeeeee;
+        color: var(--metro-text-color, #262626);
         box-shadow: none;
       }
       :host:focus {
