@@ -1,0 +1,184 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`<metro-button>` includes a basic Metro UI style button in the page.
+
+-->
+<dom-module id="metro-button">
+  <template>
+    <style>
+      :host {
+        padding: 0 1rem;
+        height: 2.125rem;
+        text-align: center;
+        vertical-align: middle;
+        background: var(--metro-button-background, #ffffff);
+        border: 1px var(--metro-button-border-color, #d9d9d9) solid;
+        color: var(--metro-button-color, #262626);
+        cursor: pointer;
+        display: inline-block;
+        outline: none;
+        font-size: 0.875rem;
+        line-height: 100%;
+        margin: 0.15625rem 0;
+        position: relative;
+      }
+      :host:hover {
+        border-color: var(--metro-button-border-hover, #787878);
+      }
+      :host:active {
+        background: var(--metro-button-background-active, #eeeeee);
+        color: var(--metro-button-color, #262626);
+        box-shadow: none;
+      }
+      :host:focus {
+        outline: 0;
+      }
+      :host:disabled {
+        background-color: #eaeaea;
+        color: #bebebe;
+        cursor: default;
+        border-color: transparent;
+      }
+      :host * {
+        color: inherit;
+      }
+      :host *:hover {
+        color: inherit;
+      }
+
+      :host[shape="rounded"] {
+        border-radius: 0.325rem;
+      }
+      :host[shape="cycle"], :host[shape="square"] {
+        width: 2.125rem;
+        min-width: 2.125rem;
+        padding: 0;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+      :host[shape="cycle"] {
+        border-radius: 50%;
+      }
+      :host[shape="square"] {
+        border-radius: 0;
+      }
+
+      :host[size="mini"] {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.625rem;
+        height: 1.4rem;
+      }
+      :host[size="small"] {
+        font-size: 0.7rem;
+        padding: 0 0.625rem;
+        height: 1.7rem;
+      }
+      :host[size="large"] {
+        font-size: 1.05rem;
+        height: 2.55rem;
+      }
+      :host[size="big"] {
+        font-size: 1.2rem;
+        height: 3.125rem;
+      }
+
+      :host[scheme="primary"] {
+        background: var(--metro-link-color, #2086bf);
+        color: #ffffff;
+        border-color: var(--metro-link-color, #2086bf);
+      }
+      :host[scheme="primary"]:active {
+        background: #1b6eae;
+        color: #ffffff;
+      }
+      :host[scheme="success"] {
+        background: #60a917;
+        color: #ffffff;
+        border-color: #60a917;
+      }
+      :host[scheme="success"]:active {
+        background: #128023;
+        color: #ffffff;
+      }
+      :host[scheme="danger"], :host[scheme="alert"] {
+        background: #ce352c;
+        color: #ffffff;
+        border-color: #ce352c;
+      }
+      :host[scheme="danger"]:active, :host[scheme="alert"]:active {
+        background: #9a1616;
+        color: #ffffff;
+      }
+      :host[scheme="info"] {
+        background: #59cde2;
+        color: #ffffff;
+        border-color: #59cde2;
+      }
+      :host[scheme="info"]:active {
+        background: #1ba1e2;
+        color: #ffffff;
+      }
+      :host[scheme="warning"] {
+        background: #fa6800;
+        color: #ffffff;
+        border-color: #fa6800;
+      }
+      :host[scheme="warning"]:active {
+        background: #bf5a15;
+        color: #ffffff;
+      }
+      :host[scheme="link"] {
+        background: transparent;
+        color: var(--metro-link-color, #2086bf);
+        border-color: transparent;
+      }
+      :host[scheme="link"]:hover, :host[scheme="link"]:active {
+        background: transparent;
+        color: var(--metro-link-visited-color-darkened, #0053bc);
+        border-color: transparent;
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer({
+
+      is: 'metro-button',
+      extends: 'button',
+
+      properties: {
+        /**
+         * Relative size of this button
+         *
+         * Acceptable values are: `mini`, `small`, `normal`, `large`, `big`
+         */
+        size: {
+          type: String,
+          value: 'normal'
+        },
+
+        /**
+         * The shape of this button
+         *
+         * Acceptable values are: `normal`, `rounded`, `cycle`, `square`
+         */
+        shape: {
+          type: String,
+          value: 'normal'
+        },
+
+        /**
+         * The Metro UI color scheme of this button
+         *
+         * Acceptable values are: `none`, `primary`, `success`, `danger`, `alert`, `info`, `warning`, `link`
+         */
+        scheme: {
+          type: String,
+          value: "none"
+        }
+      }
+    })
+  </script>
+</dom-module>

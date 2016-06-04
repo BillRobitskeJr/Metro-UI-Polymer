@@ -8,22 +8,22 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../metro-ui.html">
+    <link rel="import" href="../metro-button.html">
   </head>
   <body>
 
     <test-fixture id="basic">
       <template>
-        <metro-ui></metro-ui>
+        <button is="metro-button"></button>
       </template>
     </test-fixture>
 
     <script>
-      suite('metro-ui', function() {
+      suite('metro-button', function() {
 
         test('instantiating the element works', function() {
           var element = fixture('basic');
-          assert.equal(element.is, 'metro-ui');
+          assert.equal(element.is, 'metro-button');
         });
 
       });
