@@ -2027,26 +2027,52 @@
       is: 'metro-icon',
 
       properties: {
+        /**
+         * Metro UI icon displayed
+         *
+         * See https://metroui.org.ua/ for available icons
+         */
         icon: {
           type: String,
           value: 'none'
         },
+        /**
+         * Display a larger version of this icon
+         */
         large: {
           type: Boolean,
           value: false
         },
+        /**
+         * How many times larger this icon should be (1 - 4)
+         */
         largeMultiplier: {
           type: Number,
           value: 1
         },
+        /**
+         * Metro UI animation to use with this icon
+         *
+         * Available values are: `none`, `spin`, `pulse`, `spanner`, `bell`, `vertical`, `horizontal`, `flash`, `bounce`, `float`, `heartbeat`, `shake`, `shuttle`, `pass`, `ripple`
+         */
         animation: {
           type: String,
           value: 'none'
         },
+        /**
+         * Relative speed of the animation
+         *
+         * Available values are: `normal`, `fast`, `slow`
+         */
         animationSpeed: {
           type: String,
           value: 'normal'
         },
+        /**
+         * Metro UI animation to use when hovering over this icon
+         *
+         * Available values are: `none`, `spin`, `pulse`, `spanner`, `bell`, `vertical`, `horizontal`, `flash`, `bounce`, `float`, `heartbeat`, `shake`, `shuttle`, `pass`, `ripple`
+         */
         hoverAnimation: {
           type: String,
           value: 'none'
